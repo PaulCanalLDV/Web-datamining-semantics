@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.owl-ontologies.com/unnamed.owl#"
+  xml:base="http://www.owl-ontologies.com/unnamed.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Big_Station">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+            >40</owl:minCardinality>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:ID="capacity"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Class rdf:ID="Velib_Station"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Users">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Route"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Velib_Station"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Route">
+    <owl:disjointWith rdf:resource="#Users"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Velib_Station"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Velib_Station">
+    <owl:disjointWith rdf:resource="#Route"/>
+    <owl:disjointWith rdf:resource="#Users"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="favorite_station">
+    <rdfs:range rdf:resource="#Velib_Station"/>
+    <rdfs:domain rdf:resource="#Users"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="departure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Velib_Station"/>
+    <rdfs:domain rdf:resource="#Route"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="time">
+    <rdfs:domain rdf:resource="#Route"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="user_name">
+    <rdfs:domain rdf:resource="#Users"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="latitude">
+    <rdfs:domain rdf:resource="#Velib_Station"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="nb_born_free">
+    <rdfs:domain rdf:resource="#Velib_Station"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="city">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Velib_Station"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="user_age">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Users"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="arrival">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Route"/>
+    <rdfs:range rdf:resource="#Velib_Station"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#capacity">
+    <rdfs:domain rdf:resource="#Velib_Station"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="nb_elecbike_free">
+    <rdfs:domain rdf:resource="#Velib_Station"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="longitude">
+    <rdfs:domain rdf:resource="#Velib_Station"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="name">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Velib_Station"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="nb_bike_free">
+    <rdfs:domain rdf:resource="#Velib_Station"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <Route rdf:ID="Route3">
+    <departure>
+      <Big_Station rdf:ID="Jourdan">
+        <nb_elecbike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >7</nb_elecbike_free>
+        <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >60</capacity>
+        <nb_bike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >6</nb_bike_free>
+        <nb_born_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >47</nb_born_free>
+        <longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >2.343335</longitude>
+        <latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >48.819427</latitude>
+        <city rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Paris</city>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Jourdan</name>
+      </Big_Station>
+    </departure>
+    <arrival>
+      <Big_Station rdf:ID="Alibert">
+        <city rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Paris</city>
+        <nb_bike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >27</nb_bike_free>
+        <longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >2.366104</longitude>
+        <latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >48.871044</latitude>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Alibert</name>
+        <nb_elecbike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >2</nb_elecbike_free>
+        <nb_born_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >30</nb_born_free>
+        <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >60</capacity>
+      </Big_Station>
+    </arrival>
+    <time rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >37.0</time>
+  </Route>
+  <Route rdf:ID="Route1">
+    <departure>
+      <Velib_Station rdf:ID="Charonne">
+        <latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >48.855907</latitude>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Charonne</name>
+        <nb_bike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >0</nb_bike_free>
+        <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >20</capacity>
+        <city rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Paris</city>
+        <nb_elecbike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >4</nb_elecbike_free>
+        <nb_born_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >16</nb_born_free>
+        <longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >2.39257</longitude>
+      </Velib_Station>
+    </departure>
+    <arrival>
+      <Velib_Station rdf:ID="Benjamin_Godard">
+        <nb_born_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >16</nb_born_free>
+        <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >35</capacity>
+        <nb_elecbike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >10</nb_elecbike_free>
+        <nb_bike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >9</nb_bike_free>
+        <city rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Paris</city>
+        <latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >48.865982</latitude>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Benjamin Godard - Victor Hugo</name>
+        <longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >2.275725</longitude>
+      </Velib_Station>
+    </arrival>
+    <time rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >15.0</time>
+  </Route>
+  <Users rdf:ID="Pierro">
+    <favorite_station>
+      <Velib_Station rdf:ID="Saint-Romain">
+        <city rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Paris</city>
+        <nb_elecbike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >3</nb_elecbike_free>
+        <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >17</capacity>
+        <nb_bike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >5</nb_bike_free>
+        <latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >48.84708</latitude>
+        <nb_born_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >9</nb_born_free>
+        <longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >2.321374</longitude>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Saint-Romain</name>
+      </Velib_Station>
+    </favorite_station>
+    <user_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pierro</user_name>
+    <user_age rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >19</user_age>
+  </Users>
+  <Big_Station rdf:ID="Harpes">
+    <nb_elecbike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >3</nb_elecbike_free>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Harpes</name>
+    <latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >48.851517</latitude>
+    <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >45</capacity>
+    <nb_born_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >26</nb_born_free>
+    <nb_bike_free rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >14</nb_bike_free>
+    <city rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Paris</city>
+    <longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >2.34367</longitude>
+  </Big_Station>
+  <Route rdf:ID="Route2">
+    <departure rdf:resource="#Harpes"/>
+    <arrival rdf:resource="#Saint-Romain"/>
+    <time rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+    >28.0</time>
+  </Route>
+  <Users rdf:ID="John">
+    <favorite_station rdf:resource="#Benjamin_Godard"/>
+    <user_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >John john</user_name>
+    <user_age rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >41</user_age>
+  </Users>
+  <Users rdf:ID="Jack">
+    <favorite_station rdf:resource="#Alibert"/>
+    <user_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jack Ichan</user_name>
+    <user_age rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >55</user_age>
+  </Users>
+  <Users rdf:ID="Michou">
+    <user_age rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >73</user_age>
+    <favorite_station rdf:resource="#Harpes"/>
+    <user_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Michou chouchou</user_name>
+  </Users>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 1.3, Build 225.4)  http://protege.stanford.edu -->
