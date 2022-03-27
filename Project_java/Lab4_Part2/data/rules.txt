@@ -1,0 +1,7 @@
+@prefix ns: <http://www.owl-ontologies.com/unnamed.owl#>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+
+ 
+
+[rule1: (?stat rdf:type ns:Velib_Station) (?stat ns:capacity ?capacity) greaterThan(?capacity, 40)-> (?stat rdf:type ns:Big_Station)]
