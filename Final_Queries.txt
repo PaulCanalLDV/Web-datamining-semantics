@@ -1,0 +1,56 @@
+Name of all stations :
+SELECT ?Station_names 
+WHERE {
+	 ?stat a ns:Velib_Station .
+	?stat ns:name ?Station_names
+}
+
+All stations and their city :
+SELECT ?Station_names ?city
+WHERE {
+	 ?stat a ns:Velib_Station .
+	?stat ns:name ?Station_names .
+	?stat ns:city ?city
+}
+
+People who are more than 45 years :
+SELECT ?name ?age
+WHERE {
+	 ?people a ns:Users .
+	?people ns:user_name ?name .
+	?people ns:user_age ?age .
+	FILTER(?age>=45) .
+}
+
+List of users
+SELECT ?name
+WHERE {
+	 ?people a ns:Users .
+	?people ns:user_name ?name .
+}
+
+Routes with "Harpes" as departure station:
+SELECT ?route ?nb_bike_free
+WHERE {
+	 ?departure ns:departure ?route .
+	?route a ns:Velib_Station .
+	?route ns:name "Harpes" .
+}
+
+
+Number of free borns at "Harpes" : 
+SELECT ?nb_free_born
+WHERE {
+	 ?stat a ns:Velib_Station .
+	?stat ns:name "Harpes" .
+	?stat ns:nb_born_free ?nb_free_born .
+}
+
+See if there is available borns at one station
+ASK
+{
+?stat a ns:Velib_Station .
+?stat ns:name "station" .
+?stat ns:nb_born_free ?nb_free_born .
+FILTER (?ns_free_born > 0) .
+}
